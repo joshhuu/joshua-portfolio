@@ -1,5 +1,5 @@
 {
-  "date": "2026-06-08T04:34:59.825Z",
+  "date": "2026-06-08T05:01:47.939Z",
   "preset": "vercel",
   "framework": {
     "name": "nitro",
@@ -8,8 +8,8 @@
   "versions": {
     "nitro": "3.0.260429-beta"
   },
-  "serverEntry": "../../dist/server/index.mjs",
-  "publicDir": "../../dist/client",
+  "serverEntry": "functions/__server.func/index.mjs",
+  "publicDir": "static",
   "commands": {
     "preview": "npx srvx --static ../../static ./functions/__server.func/index.mjs",
     "deploy": "npx vercel deploy --prebuilt"
