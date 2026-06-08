@@ -1,0 +1,204 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-success: var(--success);
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: "Inter", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Dark OS theme — single mode */
+:root {
+  --radius: 0.5rem;
+
+  /* #0d0d10 */
+  --background: oklch(0.16 0.005 280);
+  --foreground: oklch(0.94 0.005 280);
+
+  /* #13131a panels */
+  --panel: oklch(0.19 0.008 280);
+  --panel-2: oklch(0.22 0.01 280);
+
+  --card: oklch(0.19 0.008 280);
+  --card-foreground: oklch(0.94 0.005 280);
+  --popover: oklch(0.19 0.008 280);
+  --popover-foreground: oklch(0.94 0.005 280);
+
+  /* #7c6fcd accent */
+  --primary: oklch(0.62 0.15 285);
+  --primary-foreground: oklch(0.98 0.005 280);
+
+  --secondary: oklch(0.24 0.01 280);
+  --secondary-foreground: oklch(0.92 0.005 280);
+
+  --muted: oklch(0.22 0.008 280);
+  --muted-foreground: oklch(0.62 0.015 280);
+
+  --accent: oklch(0.62 0.15 285);
+  --accent-foreground: oklch(0.98 0.005 280);
+
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(0.98 0.005 280);
+
+  --success: oklch(0.72 0.17 150);
+
+  --border: oklch(0.28 0.01 280);
+  --input: oklch(0.26 0.01 280);
+  --ring: oklch(0.62 0.15 285);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-image:
+      radial-gradient(
+        circle at 1px 1px,
+        oklch(0.35 0.01 280 / 0.25) 1px,
+        transparent 0
+      );
+    background-size: 22px 22px;
+  }
+
+  ::selection {
+    background: oklch(0.62 0.15 285 / 0.4);
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  .text-glow {
+    text-shadow: 0 0 24px oklch(0.62 0.15 285 / 0.6);
+  }
+  .panel {
+    background-color: var(--color-panel);
+    border: 1px solid var(--color-border);
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(0.35 0.01 280) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: oklch(0.35 0.01 280);
+    border-radius: 3px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.45 0.01 280);
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.85); }
+}
+.animate-pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+
+@keyframes caret-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+.caret::after {
+  content: "▋";
+  margin-left: 2px;
+  animation: caret-blink 1s steps(1) infinite;
+  color: var(--color-primary);
+}
+
+@keyframes morph {
+  0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+.animate-morph { animation: morph 8s ease-in-out infinite; }
+
+@keyframes wave-hand {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+.animate-wave-hand {
+  animation: wave-hand 2.5s infinite;
+  transform-origin: 70% 70%;
+}
+
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.2; }
+}
+.animate-flicker {
+  animation: flicker 4s infinite;
+}
+
+/* StackView marquee animations */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-25%); }
+}
+@keyframes marquee-reverse {
+  0% { transform: translateX(-25%); }
+  100% { transform: translateX(0); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+.animate-marquee-reverse {
+  animation: marquee-reverse 40s linear infinite;
+}
+.pause-on-hover:hover .animate-marquee,
+.pause-on-hover:hover .animate-marquee-reverse {
+  animation-play-state: paused;
+}
+.mask-edges {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
