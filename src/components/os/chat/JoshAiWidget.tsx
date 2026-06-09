@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useDragControls } from "framer-motion";
 import { MessageSquare, X, Send, Sparkles } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 
 type Msg = { role: "user" | "assistant"; content: string };
@@ -246,8 +247,60 @@ export function JoshAiWidget() {
                         {m.content}
                       </div>
                     ) : (
-                      <div className="text-sm text-foreground/90 whitespace-pre-wrap break-words">
-                        {m.content}
+                      <div className="text-sm text-foreground/90 break-words">
+                        <ReactMarkdown
+                          components={{
+                            p: ({ children }) => (
+                              <p className="mb-2 last:mb-0 leading-relaxed">{children}</p>
+                            ),
+                            strong: ({ children }) => (
+                              <strong className="font-semibold text-foreground">{children}</strong>
+                            ),
+                            em: ({ children }) => (
+                              <em className="italic text-foreground/80">{children}</em>
+                            ),
+                            ul: ({ children }) => (
+                              <ul className="my-1.5 ml-3 list-disc space-y-0.5">{children}</ul>
+                            ),
+                            ol: ({ children }) => (
+                              <ol className="my-1.5 ml-3 list-decimal space-y-0.5">{children}</ol>
+                            ),
+                            li: ({ children }) => (
+                              <li className="text-foreground/85 leading-relaxed">{children}</li>
+                            ),
+                            code: ({ children }) => (
+                              <code className="rounded bg-primary/10 px-1 py-0.5 font-mono text-[11px] text-primary">
+                                {children}
+                              </code>
+                            ),
+                            pre: ({ children }) => (
+                              <pre className="my-2 overflow-x-auto rounded-md border border-border bg-background p-3 font-mono text-[11px] text-foreground/90">
+                                {children}
+                              </pre>
+                            ),
+                            a: ({ href, children }) => (
+                              <a
+                                href={href}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-primary underline underline-offset-2 hover:text-primary/80"
+                              >
+                                {children}
+                              </a>
+                            ),
+                            h1: ({ children }) => (
+                              <h1 className="mb-1 mt-2 text-base font-bold text-foreground">{children}</h1>
+                            ),
+                            h2: ({ children }) => (
+                              <h2 className="mb-1 mt-2 text-sm font-semibold text-foreground">{children}</h2>
+                            ),
+                            h3: ({ children }) => (
+                              <h3 className="mb-0.5 mt-1.5 text-sm font-semibold text-foreground/90">{children}</h3>
+                            ),
+                          }}
+                        >
+                          {m.content}
+                        </ReactMarkdown>
                       </div>
                     )}
                   </div>
