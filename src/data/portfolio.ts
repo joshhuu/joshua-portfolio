@@ -202,6 +202,6 @@ export const contact = {
   email: "joshuasuresh08@gmail.com",
   github: "https://github.com/joshhuu",
   githubHandle: "joshhuu",
-  portfolio: "joshuas.me",
-  linkedin: "https://www.linkedin.com/in/joshuas/",
+  portfolio: "joshuatech.vercel.app",
+  linkedin: "https://www.linkedin.com/in/joshua08/",
 };
