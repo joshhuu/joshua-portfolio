@@ -72,7 +72,6 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/joshhuu/airquality-downscaling",
   },
-
 ];
 
 export type Experience = {

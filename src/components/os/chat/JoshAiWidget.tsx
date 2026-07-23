@@ -289,13 +289,19 @@ export function JoshAiWidget() {
                               </a>
                             ),
                             h1: ({ children }) => (
-                              <h1 className="mb-1 mt-2 text-base font-bold text-foreground">{children}</h1>
+                              <h1 className="mb-1 mt-2 text-base font-bold text-foreground">
+                                {children}
+                              </h1>
                             ),
                             h2: ({ children }) => (
-                              <h2 className="mb-1 mt-2 text-sm font-semibold text-foreground">{children}</h2>
+                              <h2 className="mb-1 mt-2 text-sm font-semibold text-foreground">
+                                {children}
+                              </h2>
                             ),
                             h3: ({ children }) => (
-                              <h3 className="mb-0.5 mt-1.5 text-sm font-semibold text-foreground/90">{children}</h3>
+                              <h3 className="mb-0.5 mt-1.5 text-sm font-semibold text-foreground/90">
+                                {children}
+                              </h3>
                             ),
                           }}
                         >
@@ -307,7 +313,8 @@ export function JoshAiWidget() {
                 ))}
                 {loading && (
                   <div className="font-mono text-xs text-muted-foreground">
-                    josh.ai is thinking<span className="caret" />
+                    josh.ai is thinking
+                    <span className="caret" />
                   </div>
                 )}
               </div>

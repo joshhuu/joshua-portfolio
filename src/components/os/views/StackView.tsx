@@ -8,8 +8,14 @@ type StackItem = { name: string; url?: string; Icon?: any; color?: string };
 const stackItems: StackItem[] = [
   // AI / ML
   { name: "LangChain", url: "https://cdn.simpleicons.org/langchain/white" },
-  { name: "LangGraph", Icon: Brain, color: "#10b981" },
-  { name: "CrewAI", Icon: Brain, color: "#f59e0b" },
+  {
+    name: "LangGraph",
+    url: "https://unpkg.com/@lobehub/icons-static-svg@latest/icons/langgraph-color.svg",
+  },
+  {
+    name: "CrewAI",
+    url: "https://unpkg.com/@lobehub/icons-static-svg@latest/icons/crewai-color.svg",
+  },
   { name: "HuggingFace", url: "https://cdn.simpleicons.org/huggingface/FFD21E" },
   { name: "Ollama", url: "https://cdn.simpleicons.org/ollama/white" },
   { name: "ChromaDB", Icon: Database, color: "#ec4899" },
@@ -19,7 +25,7 @@ const stackItems: StackItem[] = [
   { name: "Keras", url: "https://cdn.simpleicons.org/keras/D00000" },
   { name: "PyTorch", url: "https://cdn.simpleicons.org/pytorch/EE4C2C" },
   { name: "Langfuse", Icon: Activity, color: "#fbbf24" },
-  
+
   // Languages
   { name: "Python", url: "https://cdn.simpleicons.org/python/3776AB" },
   { name: "JavaScript", url: "https://cdn.simpleicons.org/javascript/F7DF1E" },
@@ -69,48 +75,63 @@ export function StackView() {
   }, []);
 
   return (
-    <div className="pb-12 overflow-hidden flex flex-col h-full">
-
-
-      <div className="mb-10 font-mono text-sm text-muted-foreground shrink-0">
-        <span className="text-primary">~/josh</span> $ <span className="text-foreground">{typed}</span>
+    <div className="pb-12 overflow-hidden flex flex-col h-full w-full justify-center">
+      <div className="mb-10 lg:mb-14 font-mono text-sm sm:text-base text-muted-foreground shrink-0">
+        <span className="text-primary font-bold">~/josh</span> ${" "}
+        <span className="text-foreground">{typed}</span>
         <span className="caret" />
       </div>
 
-      <div 
-        className="animate-in fade-in slide-in-from-bottom-4 duration-1000 flex-1 flex flex-col justify-center gap-6 sm:gap-10 pause-on-hover mask-edges fill-mode-both"
-        style={{ animationDelay: `${COMMAND.length * 50}ms`, animationFillMode: 'both' }}
+      <div
+        className="animate-in fade-in slide-in-from-bottom-4 duration-1000 flex-1 flex flex-col justify-center gap-8 sm:gap-12 lg:gap-14 pause-on-hover mask-edges fill-mode-both py-6"
+        style={{ animationDelay: `${COMMAND.length * 50}ms`, animationFillMode: "both" }}
       >
-        <MarqueeTrack items={row1} reverse={false} speed="40s" />
-        <MarqueeTrack items={row2} reverse={true} speed="45s" />
-        <MarqueeTrack items={row3} reverse={false} speed="35s" />
+        <MarqueeTrack items={row1} reverse={false} speed="45s" />
+        <MarqueeTrack items={row2} reverse={true} speed="50s" />
+        <MarqueeTrack items={row3} reverse={false} speed="40s" />
       </div>
     </div>
   );
 }
 
-function MarqueeTrack({ items, reverse, speed }: { items: StackItem[], reverse: boolean, speed: string }) {
+function MarqueeTrack({
+  items,
+  reverse,
+  speed,
+}: {
+  items: StackItem[];
+  reverse: boolean;
+  speed: string;
+}) {
   // Duplicate 4 times so it can seamlessly translate by 25%
   const duplicated = [...items, ...items, ...items, ...items];
-  
+
   return (
-    <div 
-      className={`flex w-max gap-4 sm:gap-6 ${reverse ? 'animate-marquee-reverse' : 'animate-marquee'}`}
+    <div
+      className={`flex w-max gap-5 sm:gap-8 lg:gap-10 ${reverse ? "animate-marquee-reverse" : "animate-marquee"}`}
       style={{ animationDuration: speed }}
     >
       {duplicated.map((item, i) => (
-        <div 
-          key={i} 
-          className="flex items-center gap-3 sm:gap-4 rounded-xl border border-border bg-panel px-5 py-3 sm:px-6 sm:py-4 transition-colors hover:border-primary/50 hover:bg-panel-2"
+        <div
+          key={i}
+          className="flex items-center gap-4 sm:gap-5 rounded-2xl border border-border bg-panel px-6 py-4 sm:px-8 sm:py-5 lg:px-9 lg:py-6 transition-all hover:border-primary/60 hover:bg-panel-2 hover:shadow-xl hover:-translate-y-1 cursor-default"
         >
           {item.url ? (
-          <img src={item.url} alt={item.name} loading="lazy" className="h-6 w-6 sm:h-8 sm:w-8 object-contain" />
+            <img
+              src={item.url}
+              alt={item.name}
+              loading="lazy"
+              className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 object-contain"
+            />
           ) : item.Icon ? (
-            <item.Icon className="h-6 w-6 sm:h-8 sm:w-8" style={{ color: item.color }} />
+            <item.Icon
+              className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12"
+              style={{ color: item.color }}
+            />
           ) : (
-            <Cpu className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+            <Cpu className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 text-primary" />
           )}
-          <span className="font-mono text-sm sm:text-base font-medium text-foreground/90 whitespace-nowrap">
+          <span className="font-mono text-base sm:text-lg lg:text-xl font-bold text-foreground whitespace-nowrap">
             {item.name}
           </span>
         </div>

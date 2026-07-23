@@ -64,10 +64,9 @@ export const Route = createFileRoute("/api/contact")({
 
           // Rate limit check with memory pruning
           if (checkAndUpdateRateLimit(ip)) {
-            return new Response(
-              "Too many messages sent. Please try again in an hour.",
-              { status: 429 },
-            );
+            return new Response("Too many messages sent. Please try again in an hour.", {
+              status: 429,
+            });
           }
 
           const key = process.env.RESEND_API_KEY;

@@ -12,6 +12,7 @@ import { MissionsView } from "./views/MissionsView";
 import { StackView } from "./views/StackView";
 import { ContactView } from "./views/ContactView";
 import { JoshAiWidget } from "./chat/JoshAiWidget";
+import { PdfWindow } from "./PdfWindow";
 import { MatrixRain } from "./MatrixRain";
 import { soundEngine } from "@/lib/soundEngine";
 
@@ -21,6 +22,7 @@ export function OsShell() {
   const [view, setView] = useState<View>("home");
   const [booting, setBooting] = useState(true);
   const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [pdfOpen, setPdfOpen] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -35,20 +37,21 @@ export function OsShell() {
       if (e.key.length === 1 || e.key === "Backspace" || e.key === "Enter") {
         soundEngine.playKeystroke();
       }
-      
+
       keyBuffer += e.key.toLowerCase();
       if (keyBuffer.length > 20) keyBuffer = keyBuffer.slice(-20);
-      
+
       if (keyBuffer.endsWith("sudo")) {
         const overlay = document.createElement("div");
-        overlay.className = "fixed inset-0 z-[9999] bg-red-600/30 pointer-events-none transition-opacity duration-300";
+        overlay.className =
+          "fixed inset-0 z-[9999] bg-red-600/30 pointer-events-none transition-opacity duration-300";
         document.body.appendChild(overlay);
         setTimeout(() => {
           overlay.style.opacity = "0";
           setTimeout(() => overlay.remove(), 300);
         }, 150);
       }
-      
+
       if (keyBuffer.endsWith("matrix")) {
         setMatrixMode(true);
       }
@@ -78,10 +81,10 @@ export function OsShell() {
       {matrixMode && <MatrixRain onClose={() => setMatrixMode(false)} />}
       <AnimatePresence>{booting && <BootSequence onDone={finishBoot} />}</AnimatePresence>
 
-      <TitleBar 
-        view={view} 
-        setView={setView} 
-        onMaximize={() => setSidebarVisible(p => !p)} 
+      <TitleBar
+        view={view}
+        setView={setView}
+        onMaximize={() => setSidebarVisible((p) => !p)}
         onMinimize={() => {
           if (!sidebarVisible) {
             setSidebarVisible(true);
@@ -95,14 +98,14 @@ export function OsShell() {
           {sidebarVisible && (
             <motion.div
               initial={{ width: 0, opacity: 0, x: -20 }}
-              animate={{ width: 224, opacity: 1, x: 0 }} // 224px is w-56
+              animate={{ width: 256, opacity: 1, x: 0 }}
               exit={{ width: 0, opacity: 0, x: -20 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="h-full shrink-0 overflow-hidden hidden md:block"
             >
-              {/* Force w-56 on the inner component so its layout doesn't break during animation */}
-              <div className="w-56 h-full">
-                <Sidebar active={view} onChange={setView} />
+              {/* Force w-64 on the inner component so its layout doesn't break during animation */}
+              <div className="w-64 h-full">
+                <Sidebar active={view} onChange={setView} onOpenPdf={() => setPdfOpen(true)} />
               </div>
             </motion.div>
           )}
@@ -123,9 +126,12 @@ export function OsShell() {
             </motion.button>
           )}
         </AnimatePresence>
-        
-        <main aria-label="Portfolio content" className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-thin">
-          <div className="mx-auto max-w-5xl p-6 md:p-10 pb-32 md:pb-10">
+
+        <main
+          aria-label="Portfolio content"
+          className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-thin flex flex-col items-center"
+        >
+          <div className="mx-auto w-full max-w-7xl xl:max-w-[1440px] px-4 sm:px-6 md:px-10 lg:px-12 py-6 md:py-10 pb-32 md:pb-12 flex-1 flex flex-col">
             <AnimatePresence mode="wait">
               <motion.div
                 key={view}
@@ -147,6 +153,7 @@ export function OsShell() {
       </div>
       <MobileTabBar active={view} onChange={setView} />
       <JoshAiWidget />
+      <PdfWindow isOpen={pdfOpen} onClose={() => setPdfOpen(false)} pdfUrl="/Joshua-Resume.pdf" />
       <Toaster theme="dark" />
     </div>
   );

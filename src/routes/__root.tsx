@@ -73,11 +73,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Joshua S Portfolio" },
-      { name: "description", content: "Joshua S is an AI Engineer and Full Stack Developer specializing in Agentic Architectures and LLM Orchestration." },
+      {
+        name: "description",
+        content:
+          "Joshua S is an AI Engineer and Full Stack Developer specializing in Agentic Architectures and LLM Orchestration.",
+      },
       { name: "author", content: "Joshua S" },
-      { name: "keywords", content: "Joshua S, AI Engineer, Full Stack Developer, Agentic Architectures, LLM Orchestration, React, TypeScript, Python, Portfolio" },
+      {
+        name: "keywords",
+        content:
+          "Joshua S, AI Engineer, Full Stack Developer, Agentic Architectures, LLM Orchestration, React, TypeScript, Python, Portfolio",
+      },
       { property: "og:title", content: "Joshua S Portfolio" },
-      { property: "og:description", content: "Explore the interactive OS portfolio of Joshua S, AI Engineer & Full Stack Developer." },
+      {
+        property: "og:description",
+        content:
+          "Explore the interactive OS portfolio of Joshua S, AI Engineer & Full Stack Developer.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://joshuas.me" },
       { property: "og:site_name", content: "Joshua S Portfolio" },
@@ -86,7 +98,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Joshua S Portfolio" },
-      { name: "twitter:description", content: "Explore the interactive OS portfolio of Joshua S, AI Engineer & Full Stack Developer." },
+      {
+        name: "twitter:description",
+        content:
+          "Explore the interactive OS portfolio of Joshua S, AI Engineer & Full Stack Developer.",
+      },
       { name: "twitter:image", content: "https://joshuas.me/images/og-preview.png" },
       { name: "twitter:site", content: "@sjoshua08" },
       { name: "twitter:creator", content: "@sjoshua08" },
@@ -99,9 +115,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap",
       },
-      { rel: "apple-touch-icon", sizes: "180x180", href: "/images/favicon_io/apple-touch-icon.png" },
-      { rel: "icon", type: "image/png", sizes: "32x32", href: "/images/favicon_io/favicon-32x32.png" },
-      { rel: "icon", type: "image/png", sizes: "16x16", href: "/images/favicon_io/favicon-16x16.png" },
+      {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/images/favicon_io/apple-touch-icon.png",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: "/images/favicon_io/favicon-32x32.png",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "16x16",
+        href: "/images/favicon_io/favicon-16x16.png",
+      },
       { rel: "manifest", href: "/images/favicon_io/site.webmanifest" },
       { rel: "shortcut icon", href: "/images/favicon_io/favicon.ico" },
     ],

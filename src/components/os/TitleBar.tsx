@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { X, Minus, Maximize2 } from "lucide-react";
 
-export function TitleBar({ 
-  view, 
-  setView, 
+export function TitleBar({
+  view,
+  setView,
   onMaximize,
-  onMinimize
-}: { 
-  view?: string; 
-  setView?: (v: any) => void; 
-  onMaximize?: () => void; 
+  onMinimize,
+}: {
+  view?: string;
+  setView?: (v: any) => void;
+  onMaximize?: () => void;
   onMinimize?: () => void;
 }) {
   const [time, setTime] = useState<string>(() => formatTime(new Date()));
@@ -21,14 +21,19 @@ export function TitleBar({
   return (
     <div className="relative flex h-9 items-center justify-between border-b border-border bg-panel px-3 font-mono text-xs text-muted-foreground">
       <div className="flex items-center gap-2">
-        <button 
-          onClick={() => { if (view !== "home" && setView) setView("home"); }}
+        <button
+          onClick={() => {
+            if (view !== "home" && setView) setView("home");
+          }}
           aria-label="Close — return to home"
           className="group flex h-3 w-3 items-center justify-center rounded-full bg-[#ff5f56] transition-colors"
         >
-          <X className="h-[9px] w-[9px] text-[#4d0000] opacity-0 transition-opacity group-hover:opacity-100" strokeWidth={3} />
+          <X
+            className="h-[9px] w-[9px] text-[#4d0000] opacity-0 transition-opacity group-hover:opacity-100"
+            strokeWidth={3}
+          />
         </button>
-        <button 
+        <button
           onClick={() => {
             if (onMinimize) {
               onMinimize();
@@ -39,14 +44,20 @@ export function TitleBar({
           aria-label="Minimize"
           className="group flex h-3 w-3 items-center justify-center rounded-full bg-[#ffbd2e] transition-colors"
         >
-          <Minus className="h-[9px] w-[9px] text-[#4c2900] opacity-0 transition-opacity group-hover:opacity-100" strokeWidth={3} />
+          <Minus
+            className="h-[9px] w-[9px] text-[#4c2900] opacity-0 transition-opacity group-hover:opacity-100"
+            strokeWidth={3}
+          />
         </button>
-        <button 
+        <button
           onClick={onMaximize}
           aria-label="Toggle sidebar"
           className="group flex h-3 w-3 items-center justify-center rounded-full bg-[#27c93f] transition-colors"
         >
-          <Maximize2 className="h-[8px] w-[8px] text-[#003d07] opacity-0 transition-opacity group-hover:opacity-100" strokeWidth={3} />
+          <Maximize2
+            className="h-[8px] w-[8px] text-[#003d07] opacity-0 transition-opacity group-hover:opacity-100"
+            strokeWidth={3}
+          />
         </button>
       </div>
       <div className="absolute left-1/2 -translate-x-1/2 text-foreground/80 whitespace-nowrap overflow-hidden max-w-[40vw] sm:max-w-none text-ellipsis text-center">
