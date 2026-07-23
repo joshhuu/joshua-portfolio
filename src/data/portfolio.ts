@@ -168,7 +168,7 @@ export const missions: Mission[] = [
     id: "gfg-ambassador",
     title: "Campus Ambassador",
     subtitle: "GeeksforGeeks",
-    year: "2024",
+    year: "2025",
     status: "COMPLETED",
   },
 ];
