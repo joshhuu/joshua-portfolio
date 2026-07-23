@@ -185,7 +185,7 @@ export function Sidebar({
           </div>
           <div className="font-mono text-[10px] text-cyan-200/70 flex items-center justify-between">
             <span>
-              Model: <strong className="text-white font-medium">Josh-AI v2</strong>
+              Engine: <strong className="text-white font-medium">josh.ai v2.4</strong>
             </span>
             <span>
               State: <strong className="text-cyan-300 font-semibold">Ready</strong>

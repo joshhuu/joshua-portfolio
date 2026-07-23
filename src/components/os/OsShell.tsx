@@ -152,7 +152,7 @@ export function OsShell() {
         </main>
       </div>
       <MobileTabBar active={view} onChange={setView} />
-      <JoshAiWidget />
+      <JoshAiWidget onNavigate={setView} onOpenPdf={() => setPdfOpen(true)} />
       <PdfWindow isOpen={pdfOpen} onClose={() => setPdfOpen(false)} pdfUrl="/Joshua-Resume.pdf" />
       <Toaster theme="dark" />
     </div>
